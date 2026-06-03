@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GoSolution — Więcej niż agencja. Twój partner w kadrach.</title>
+<meta name="description" content="GoSolution — outsourcing pracowniczy i agencja pracy tymczasowej. Łączymy firmy z odpowiednimi pracownikami. Szybko, transparentnie, na uczciwych zasadach.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+@font-face {
+  font-family: 'Geist';
+  src: url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+:root{
+  --bg-base:#1A1A1A;--bg-deep:#0D0D0D;--bg-surface:#222222;--bg-card:#2A2A2A;--bg-nav:#111111;
+  --accent:#E8E8E8;--fg:#F0F0F0;--fg-2:#9A9A9A;--border:#333333;
+  --font-head:'Outfit',system-ui,sans-serif;--font-body:'Geist',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  --r-btn:4px;--r-card:8px;--t:200ms ease;--maxw:1180px;--pad:clamp(1.25rem,4vw,2.5rem);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%;}
+body{background:var(--bg-base);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img,svg{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;cursor:pointer;}
+h1,h2,h3{font-family:var(--font-head);font-weight:600;letter-spacing:-0.02em;line-height:1.05;color:var(--fg);}
+::selection{background:var(--accent);color:var(--bg-base);}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad);}
+section{padding-block:clamp(4rem,9vw,7.5rem);}
+.eyebrow{font-family:var(--font-body);font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.18em;color:var(--fg-2);margin-bottom:.4rem;}
+.section-head{max-width:640px;margin-bottom:clamp(2.5rem,5vw,3.75rem);}
+.section-head h2{font-size:clamp(1.9rem,4vw,2.85rem);}
+.section-head .sub{color:var(--fg-2);font-size:1.0625rem;margin-top:1rem;max-width:560px;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.5rem;border-radius:var(--r-btn);font-family:var(--font-body);font-weight:600;font-size:.95rem;border:1px solid transparent;transition:all var(--t);white-space:nowrap;}
+.btn-primary{background:var(--accent);color:var(--bg-base);}
+.btn-primary:hover{background:#fff;transform:translateY(-1px);}
+.btn-outline{background:transparent;color:var(--accent);border-color:var(--accent);}
+.btn-outline:hover{background:var(--accent);color:var(--bg-base);}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+.nav{position:fixed;inset:0 0 auto 0;z-index:100;transition:background var(--t),border-color var(--t);border-bottom:1px solid transparent;}
+.nav.scrolled{background:rgba(17,17,17,.9);backdrop-filter:blur(10px);border-bottom-color:var(--border);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px;}
+.logo{display:inline-flex;align-items:center;}
+.logo-svg{height:46px;width:auto;display:block;}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none;}
+.nav-links a{font-size:.9rem;color:var(--fg-2);transition:color var(--t);}
+.nav-links a:hover{color:var(--fg);}
+.nav-right{display:flex;align-items:center;gap:1.25rem;}
+.nav-cta{padding:.6rem 1.15rem;font-size:.875rem;}
+.hamburger{display:none;width:44px;height:44px;background:transparent;border:1px solid var(--border);border-radius:var(--r-btn);place-items:center;color:var(--fg);}
+.mobile-menu{position:fixed;inset:72px 0 auto 0;z-index:99;background:var(--bg-nav);border-bottom:1px solid var(--border);transform:translateY(-120%);transition:transform 280ms cubic-bezier(.4,0,.2,1);padding:1.5rem var(--pad) 2rem;}
+.mobile-menu.open{transform:translateY(0);}
+.mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:.25rem;}
+.mobile-menu a{display:block;padding:.85rem 0;font-size:1.05rem;color:var(--fg-2);border-bottom:1px solid var(--border);}
+.mobile-menu .btn{margin-top:1.25rem;width:100%;}
+.hero{position:relative;background:var(--bg-deep);padding-top:clamp(8rem,16vw,11rem);padding-bottom:clamp(5rem,11vw,8rem);overflow:hidden;}
+.hero-grid{position:absolute;inset:0;z-index:0;pointer-events:none;}
+.hero-grid svg{width:100%;height:100%;}
+.hero-grid .gline{stroke:var(--accent);stroke-width:1;opacity:.05;}
+.hero-glow{position:absolute;z-index:0;pointer-events:none;width:min(720px,90vw);aspect-ratio:1;left:50%;top:18%;transform:translateX(-50%);background:radial-gradient(circle,rgba(232,232,232,.06),transparent 62%);}
+.hero-inner{position:relative;z-index:1;max-width:var(--maxw);}
+.hero h1{font-size:clamp(2.5rem,6.2vw,5rem);font-weight:700;line-height:1.02;letter-spacing:-0.03em;}
+.hero h1 .dim{color:var(--fg-2);}
+.hero .sub{margin-top:1.5rem;max-width:560px;font-size:1.125rem;color:var(--fg-2);line-height:1.55;}
+.hero-actions{margin-top:2.5rem;display:flex;flex-wrap:wrap;gap:1rem;}
+.about{background:#FFFFFF;}
+.about .eyebrow{color:#777777;}
+.about h2{color:#111111;}
+.about-body{max-width:640px;font-size:1.0625rem;}
+.about .about-body p{color:#555555;}
+.about-body p+p{margin-top:1.1rem;}
+.values{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:clamp(2.5rem,5vw,3.5rem);}
+.value{padding:1.75rem;border:1px solid var(--border);border-radius:var(--r-card);background:rgba(255,255,255,.015);}
+.about .value{background:#F7F6F5;border-color:#E0E0E0;}
+.value .ico{width:40px;height:40px;color:var(--accent);margin-bottom:1.1rem;}
+.about .value .ico{color:#1A1A1A;}
+.value h3{font-size:1.2rem;font-weight:600;margin-bottom:.5rem;}
+.about .value h3{color:#111111;}
+.value p{color:var(--fg-2);font-size:.95rem;}
+.about .value p{color:#666666;}
+.services{background:#F7F6F5;}
+.services .eyebrow{color:#777777;}
+.services h2{color:#111111;}
+.services .section-head .sub{color:#666666;}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
+.card{position:relative;padding:2rem;border:1px solid var(--border);border-radius:var(--r-card);background:var(--bg-card);transition:border-color var(--t),transform var(--t);}
+.card:hover{border-color:var(--accent);transform:translateY(-3px);}
+.services .card{background:#FFFFFF;border-color:#E5E5E5;}
+.services .card:hover{border-color:#1A1A1A;}
+.card .ico{width:34px;height:34px;color:var(--accent);margin-bottom:1.4rem;}
+.services .card .ico{color:#1A1A1A;}
+.card .idx{position:absolute;top:1.6rem;right:1.6rem;font-family:var(--font-head);font-size:.85rem;color:var(--fg-2);opacity:.6;}
+.services .card .idx{color:#999999;}
+.card h3{font-size:1.3rem;font-weight:600;margin-bottom:.7rem;}
+.services .card h3{color:#111111;}
+.card p{color:var(--fg-2);font-size:.95rem;}
+.services .card p{color:#666666;}
+.partners{padding-block:2.5rem;border-top:1px solid var(--border);}
+.partners-label{max-width:var(--maxw);margin-inline:auto;text-align:left;padding-inline:var(--pad);font-size:.75rem;color:var(--fg-2);text-transform:uppercase;letter-spacing:.15em;margin-bottom:1.5rem;}
+.marquee{margin-top:clamp(2rem,5vw,3rem);overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);}
+.marquee-track{display:flex;gap:2.5rem;width:max-content;animation:scroll 38s linear infinite;}
+.partners:hover .marquee-track{animation-play-state:paused;}
+.plogo{flex:0 0 auto;height:56px;display:grid;place-items:center;padding:0 1.75rem;border:1px solid var(--border);border-radius:var(--r-card);background:rgba(255,255,255,.02);color:var(--fg-2);opacity:.4;font-family:var(--font-head);font-weight:600;font-size:1.05rem;letter-spacing:-.01em;transition:opacity var(--t),color var(--t);}
+.plogo:hover{opacity:1;color:var(--fg);}
+@keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.contact{background:var(--bg-base);}
+.contact-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:start;}
+.field{margin-bottom:1.1rem;}
+.field label{display:block;font-size:.85rem;color:var(--fg-2);margin-bottom:.45rem;}
+.field input,.field textarea{width:100%;background:var(--bg-surface);color:var(--fg);border:1px solid var(--border);border-radius:var(--r-btn);padding:.8rem .95rem;font-family:var(--font-body);font-size:.95rem;transition:border-color var(--t);}
+.field input::placeholder,.field textarea::placeholder{color:#6a6a6a;}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--accent);}
+.field textarea{resize:vertical;min-height:130px;}
+.field.invalid input,.field.invalid textarea{border-color:#c46b6b;}
+.field .err{display:none;color:#d08a8a;font-size:.78rem;margin-top:.35rem;}
+.field.invalid .err{display:block;}
+.opt{color:var(--fg-2);font-weight:400;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 1.1rem;}
+.form-note{margin-top:.75rem;font-size:.85rem;color:var(--fg-2);}
+.form-success{display:none;margin-top:1rem;padding:.9rem 1rem;border:1px solid var(--border);border-radius:var(--r-btn);background:var(--bg-card);font-size:.9rem;}
+.form-success.show{display:block;}
+.contact-info .info-card{border:1px solid var(--border);border-radius:var(--r-card);background:var(--bg-card);padding:1.75rem;}
+.info-row{display:flex;gap:.9rem;align-items:flex-start;padding:.85rem 0;border-bottom:1px solid var(--border);}
+.info-row:last-child{border-bottom:none;}
+.info-row .ico{width:20px;height:20px;color:var(--accent);flex:0 0 auto;margin-top:.15rem;}
+.info-row .lbl{font-size:.75rem;color:var(--fg-2);text-transform:uppercase;letter-spacing:.1em;}
+.info-row .val{font-size:.95rem;color:var(--fg);}
+.worker{background:#DFDEDE;border-top:1px solid #C8C8C8;border-bottom:none;}
+.worker .eyebrow{color:#777777;}
+.worker-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:2rem;}
+.worker-text{max-width:600px;}
+.worker-text h2{font-size:clamp(1.8rem,3.6vw,2.5rem);color:#111111;}
+.worker-text p{color:#555555;margin-top:1rem;font-size:1.0625rem;}
+.worker-text .mail{display:inline-block;margin-top:.9rem;color:#1A1A1A;font-size:.95rem;border-bottom:1px solid #888888;padding-bottom:2px;}
+.worker .btn-outline{color:#1A1A1A;border-color:#1A1A1A;}
+.worker .btn-outline:hover{background:#1A1A1A;color:#F5F5F5;}
+.worker-actions{flex:0 0 auto;}
+.footer{background:var(--bg-deep);padding-block:clamp(3rem,6vw,4.5rem);}
+.footer-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2.5rem;}
+.footer-brand{max-width:320px;}
+.footer-brand .tag{color:var(--fg-2);font-size:.95rem;margin-top:1rem;}
+.footer-cols{display:flex;flex-wrap:wrap;gap:3.5rem;}
+.fcol h4{font-family:var(--font-head);font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--fg-2);margin-bottom:1rem;font-weight:600;}
+.fcol ul{list-style:none;display:flex;flex-wrap:wrap;flex-direction:row;gap:.5rem 2rem;}
+.fcol a,.fcol span{font-size:.9rem;color:var(--fg-2);transition:color var(--t);}
+.fcol a:hover{color:var(--fg);}
+.footer-bottom{margin-top:clamp(2.5rem,5vw,3.5rem);padding-top:1.75rem;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:center;}
+.footer-bottom .copy{font-size:.85rem;color:var(--fg-2);}
+.footer-bottom .legal{display:flex;gap:1.5rem;}
+.footer-bottom .legal a{font-size:.85rem;color:var(--fg-2);}
+.footer-bottom .legal a:hover{color:var(--fg);}
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none;}
+  .hamburger{display:grid;}
+  .values{grid-template-columns:1fr;}
+  .cards{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;}
+  .form-grid{grid-template-columns:1fr;}
+  .worker-inner{flex-direction:column;align-items:flex-start;}
+}
+@media(max-width:375px){:root{--pad:1.1rem;}}
+@media(prefers-reduced-motion:reduce){.marquee-track{animation:none;}html{scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="logo" aria-label="GoSolution — strona główna">
+      <img src="Gos_logo_SilverIA.svg" class="logo-svg" alt="GoSolution">
+    </a>
+    <nav aria-label="Główna nawigacja">
+      <ul class="nav-links">
+        <li><a href="#o-firmie">O firmie</a></li>
+        <li><a href="#uslugi">Usługi</a></li>
+        <li><a href="#partnerzy">Partnerzy</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="#dla-pracownika">Dla pracownika</a></li>
+      </ul>
+    </nav>
+    <div class="nav-right">
+      <a href="#kontakt" class="btn btn-primary nav-cta">Skontaktuj się</a>
+      <button class="hamburger" id="hamburger" aria-label="Otwórz menu" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#o-firmie">O firmie</a></li>
+    <li><a href="#uslugi">Usługi</a></li>
+    <li><a href="#partnerzy">Partnerzy</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="#dla-pracownika">Dla pracownika</a></li>
+  </ul>
+  <a href="#kontakt" class="btn btn-primary">Skontaktuj się</a>
+</nav>
+<main id="top">
+  <section class="hero">
+    <div class="hero-grid" aria-hidden="true">
+      <svg preserveAspectRatio="xMidYMid slice" viewBox="0 0 1200 700">
+        <defs><pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path class="gline" d="M60 0H0V60" fill="none"/></pattern></defs>
+        <rect width="1200" height="700" fill="url(#grid)"/>
+        <line class="gline" id="sweep" x1="0" y1="0" x2="0" y2="700" style="opacity:.18"/>
+      </svg>
+    </div>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <h1>Więcej niż agencja.<br><span class="dim">Twój partner w kadrach.</span></h1>
+      <p class="sub">Łączymy firmy z odpowiednimi pracownikami. Szybko, transparentnie i na zasadach, które szanują obie strony.</p>
+      <div class="hero-actions">
+        <a href="#kontakt" class="btn btn-primary">Umów spotkanie</a>
+        <a href="#uslugi" class="btn btn-outline">Poznaj nasze usługi</a>
+      </div>
+    </div>
+  </section>
+  <section class="partners" id="partnerzy">
+    <p class="partners-label">Zaufali nam</p>
+    <div class="marquee">
+      <div class="marquee-track" id="track"></div>
+    </div>
+  </section>
+  <section class="about" id="o-firmie">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">O nas</p>
+        <h2>Kadry, które działają.</h2>
+      </div>
+      <div class="about-body">
+        <p>GoSolution to agencja pracy tymczasowej i partner outsourcingu pracowniczego dla firm, które potrzebują ludzi gotowych do pracy — bez przeciągających się procesów i ukrytych kosztów.</p>
+        <p>Działamy konkretnie: rozumiemy specyfikę produkcji, utrzymania czystości i budownictwa, dlatego dobieramy pracowników pod realne wymagania stanowiska, a nie pod tabelę w arkuszu. Bierzemy na siebie rekrutację, formalności i obsługę kadrowo-płacową.</p>
+        <p>Stawiamy na uczciwość wobec obu stron. Klient dostaje przewidywalnego partnera i jasne warunki współpracy, a pracownik — godne zatrudnienie i traktowanie, na którym budujemy długie relacje.</p>
+      </div>
+      <div class="values">
+        <div class="value">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          <h3>Zaufanie</h3>
+          <p>Dotrzymujemy ustaleń i bierzemy odpowiedzialność za jakość. Współpracę budujemy na powtarzalności, nie na obietnicach.</p>
+        </div>
+        <div class="value">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+          <h3>Transparentność</h3>
+          <p>Jasne stawki, czytelne umowy i pełna informacja o statusie rekrutacji. Bez drobnego druku i niespodzianek na fakturze.</p>
+        </div>
+        <div class="value">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 7h-9M14 17H4M4 7h4M16 17h4"/><circle cx="11" cy="7" r="3"/><circle cx="13" cy="17" r="3"/></svg>
+          <h3>Godne warunki pracy</h3>
+          <p>Legalne zatrudnienie, terminowe wynagrodzenia i realne wsparcie pracownika. Dbamy o ludzi, którzy budują wynik klienta.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="services" id="uslugi">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Usługi</p>
+        <h2>Co oferujemy</h2>
+        <p class="sub">Kompleksowe rozwiązania kadrowe dopasowane do Twoich potrzeb.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <span class="idx">01</span>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <h3>Rekrutacja tymczasowa</h3>
+          <p>Elastyczne zatrudnienie na czas określony — sezonowe, projektowe i pod nagłe wzrosty produkcji. Kompletujemy obsadę szybko, bez obciążania Twojego działu kadr.</p>
+        </article>
+        <article class="card">
+          <span class="idx">02</span>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-5h6v5"/></svg>
+          <h3>Outsourcing pracowniczy (APT)</h3>
+          <p>Przejmujemy cały proces zatrudnienia — od rekrutacji po obsługę kadrowo-płacową. Zdejmujemy z Ciebie obciążenia administracyjne i ryzyko związane z zarządzaniem personelem.</p>
+        </article>
+        <article class="card">
+          <span class="idx">03</span>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6 1.4 0 2.7.5 3.7 1.2"/><path d="M15 14l2 2 4-4"/></svg>
+          <h3>Rekrutacja stała</h3>
+          <p>Dobór pracowników na stałe stanowiska z weryfikacją kompetencji i referencji. Przedstawiamy wyselekcjonowanych kandydatów i dajemy gwarancję na skuteczność rekrutacji.</p>
+        </article>
+        <article class="card">
+          <span class="idx">04</span>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>
+          <h3>Legalizacja zatrudnienia cudzoziemców</h3>
+          <p>Kompleksowa obsługa dokumentów i pozwoleń na pracę. Mamy doświadczenie z pracownikami z Ukrainy i innych krajów Europy — prowadzimy proces zgodnie z przepisami od A do Z.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="worker" id="dla-pracownika">
+    <div class="wrap worker-inner">
+      <div class="worker-text">
+        <p class="eyebrow">Dla pracownika</p>
+        <h2>Szukasz pracy?</h2>
+        <p>Współpracujemy z pracodawcami, którzy oferują godne warunki zatrudnienia. Wyślij nam swoje CV — dopasujemy Cię do odpowiedniej oferty.</p>
+        <a href="mailto:praca@gosolution.pl" class="mail">praca@gosolution.pl</a>
+      </div>
+      <div class="worker-actions">
+        <a href="mailto:praca@gosolution.pl?subject=Aplikacja%20-%20CV" class="btn btn-outline">Wyślij CV</a>
+      </div>
+    </div>
+  </section>
+  <section class="contact" id="kontakt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Kontakt</p>
+        <h2>Porozmawiajmy</h2>
+        <p class="sub">Napisz lub zadzwoń — odpowiemy w ciągu 24h.</p>
+      </div>
+      <div class="contact-grid">
+        <form id="contactForm" novalidate>
+          <div class="form-grid">
+            <div class="field"><label for="f-name">Imię i nazwisko</label><input type="text" id="f-name" name="name" required><span class="err">Podaj imię i nazwisko.</span></div>
+            <div class="field"><label for="f-company">Firma</label><input type="text" id="f-company" name="company" required><span class="err">Podaj nazwę firmy.</span></div>
+            <div class="field"><label for="f-email">Email</label><input type="email" id="f-email" name="email" required><span class="err">Podaj poprawny adres email.</span></div>
+            <div class="field"><label for="f-phone">Telefon <span class="opt">(opcjonalne)</span></label><input type="tel" id="f-phone" name="phone"></div>
+          </div>
+          <div class="field"><label for="f-msg">Wiadomość</label><textarea id="f-msg" name="message" required></textarea><span class="err">Napisz krótką wiadomość.</span></div>
+          <button type="submit" class="btn btn-primary">Wyślij wiadomość</button>
+          <p class="form-note">Wypełniając formularz, wyrażasz zgodę na kontakt w sprawie zapytania.</p>
+          <div class="form-success" id="formSuccess" role="status">Dziękujemy — skontaktujemy się w ciągu 24h.</div>
+        </form>
+        <aside class="contact-info">
+          <div class="info-card">
+            <div class="info-row"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><div><div class="lbl">Telefon</div><div class="val">+48 600 000 000</div></div></div>
+            <div class="info-row"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><div><div class="lbl">Email</div><div class="val">kontakt@gosolution.pl</div></div></div>
+            <div class="info-row"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.7-7-11a7 7 0 0 1 14 0c0 5.3-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><div><div class="lbl">Adres</div><div class="val">ul. Przykładowa 1, 00-000 Warszawa</div></div></div>
+            <div class="info-row"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><div class="lbl">Godziny</div><div class="val">Pon–Pt, 8:00–17:00</div></div></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#top" class="logo" aria-label="GoSolution">
+          <img src="Gos_logo_SilverIA.svg" class="logo-svg" alt="GoSolution">
+        </a>
+        <p class="tag">Więcej niż agencja. Twój partner w kadrach.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="fcol">
+          <h4>Nawigacja</h4>
+          <ul>
+            <li><a href="#o-firmie">O firmie</a></li>
+            <li><a href="#uslugi">Usługi</a></li>
+            <li><a href="#partnerzy">Partnerzy</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+            <li><a href="#dla-pracownika">Dla pracownika</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="copy">© 2025 GoSolution. Wszelkie prawa zastrzeżone.</span>
+      <span class="legal"><a href="#">Polityka prywatności</a><a href="#">RODO</a></span>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>20);},{passive:true});
+  var burger=document.getElementById('hamburger'),menu=document.getElementById('mobileMenu');
+  burger.addEventListener('click',function(){var o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Zamknij menu':'Otwórz menu');});
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var id=(a.getAttribute('href')||'').slice(1);
+      if(!id)return;
+      e.preventDefault();
+      menu.classList.remove('open');burger.setAttribute('aria-expanded','false');
+      var el=id==='top'?null:document.getElementById(id);
+      window.scrollTo({top:el?el.getBoundingClientRect().top+window.pageYOffset-72:0,behavior:'smooth'});
+    });
+  });
+  var partners=['Produkcja Nord','CleanPro','BudMax','Logistyka 24','MetalWorks','FreshFood','EuroBud','TechMontaż'];
+  var track=document.getElementById('track');
+  if(track){var h='';[0,1].forEach(function(p){partners.forEach(function(n){h+='<div class="plogo" aria-hidden="'+(p?'true':'false')+'">'+n+'</div>';});});track.innerHTML=h;}
+  var sweep=document.getElementById('sweep');
+  if(sweep){var x=0;setInterval(function(){x=(x+2)%1260;sweep.setAttribute('x1',x);sweep.setAttribute('x2',x);},40);}
+  var form=document.getElementById('contactForm'),success=document.getElementById('formSuccess'),re=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  form.addEventListener('submit',function(e){
+    e.preventDefault();var ok=true;
+    [['name',form.name.value.trim().length>=2],['company',form.company.value.trim().length>=1],['email',re.test(form.email.value.trim())],['message',form.message.value.trim().length>=3]].forEach(function(p){var bad=!p[1];form[p[0]].closest('.field').classList.toggle('invalid',bad);if(bad)ok=false;});
+    if(ok){success.classList.add('show');form.reset();setTimeout(function(){success.classList.remove('show');},6000);}
+    else{var f=form.querySelector('.field.invalid input,.field.invalid textarea');if(f)f.focus();}
+  });
+  form.querySelectorAll('input,textarea').forEach(function(el){el.addEventListener('input',function(){el.closest('.field').classList.remove('invalid');});});
+})();
+</script>
+</body>
+</html>
