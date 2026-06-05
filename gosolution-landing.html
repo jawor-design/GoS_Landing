@@ -68,6 +68,8 @@ section{padding-block:clamp(4rem,9vw,7.5rem);}
 .hero h1 .dim{color:var(--fg-2);}
 .hero .sub{margin-top:1.5rem;max-width:560px;font-size:1.125rem;color:var(--fg-2);line-height:1.55;}
 .hero-actions{margin-top:2.5rem;display:flex;flex-wrap:wrap;gap:1rem;}
+.dark-screen{min-height:min(calc(100dvh - 72px),920px);display:flex;flex-direction:column;background:var(--bg-deep);}
+.dark-screen .hero{flex:1;}
 .about{background:#FFFFFF;}
 .about .eyebrow{color:#777777;}
 .about h2{color:#111111;}
@@ -100,7 +102,7 @@ section{padding-block:clamp(4rem,9vw,7.5rem);}
 .services .card h3{color:#111111;}
 .card p{color:var(--fg-2);font-size:.95rem;}
 .services .card p{color:#666666;}
-.partners{padding-block:2.5rem;border-top:1px solid var(--border);}
+.partners{padding-block:2.5rem;border-top:1px solid var(--border);background:var(--bg-deep);}
 .partners-label{max-width:var(--maxw);margin-inline:auto;text-align:left;padding-inline:var(--pad);font-size:.75rem;color:var(--fg-2);text-transform:uppercase;letter-spacing:.15em;margin-bottom:1.5rem;}
 .marquee{margin-top:clamp(2rem,5vw,3rem);overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);}
 .marquee-track{display:flex;gap:2.5rem;width:max-content;animation:scroll 38s linear infinite;}
@@ -201,30 +203,32 @@ section{padding-block:clamp(4rem,9vw,7.5rem);}
   <a href="#kontakt" class="btn btn-primary">Skontaktuj się</a>
 </nav>
 <main id="top">
-  <section class="hero">
-    <div class="hero-grid" aria-hidden="true">
-      <svg preserveAspectRatio="xMidYMid slice" viewBox="0 0 1200 700">
-        <defs><pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path class="gline" d="M60 0H0V60" fill="none"/></pattern></defs>
-        <rect width="1200" height="700" fill="url(#grid)"/>
-        <line class="gline" id="sweep" x1="0" y1="0" x2="0" y2="700" style="opacity:.18"/>
-      </svg>
-    </div>
-    <div class="hero-glow" aria-hidden="true"></div>
-    <div class="wrap hero-inner">
-      <h1>Więcej niż agencja.<br><span class="dim">Twój partner w kadrach.</span></h1>
-      <p class="sub">Łączymy firmy z odpowiednimi pracownikami. Szybko, transparentnie i na zasadach, które szanują obie strony.</p>
-      <div class="hero-actions">
-        <a href="#kontakt" class="btn btn-primary">Umów spotkanie</a>
-        <a href="#uslugi" class="btn btn-outline">Poznaj nasze usługi</a>
+  <div class="dark-screen">
+    <section class="hero">
+      <div class="hero-grid" aria-hidden="true">
+        <svg preserveAspectRatio="xMidYMid slice" viewBox="0 0 1200 700">
+          <defs><pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path class="gline" d="M60 0H0V60" fill="none"/></pattern></defs>
+          <rect width="1200" height="700" fill="url(#grid)"/>
+          <line class="gline" id="sweep" x1="0" y1="0" x2="0" y2="700" style="opacity:.18"/>
+        </svg>
       </div>
-    </div>
-  </section>
-  <section class="partners" id="partnerzy">
-    <p class="partners-label">Zaufali nam</p>
-    <div class="marquee">
-      <div class="marquee-track" id="track"></div>
-    </div>
-  </section>
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="wrap hero-inner">
+        <h1>Więcej niż agencja.<br><span class="dim">Twój partner w kadrach.</span></h1>
+        <p class="sub">Łączymy firmy z odpowiednimi pracownikami. Szybko, transparentnie i na zasadach, które szanują obie strony.</p>
+        <div class="hero-actions">
+          <a href="#kontakt" class="btn btn-primary">Umów spotkanie</a>
+          <a href="#uslugi" class="btn btn-outline">Poznaj nasze usługi</a>
+        </div>
+      </div>
+    </section>
+    <section class="partners" id="partnerzy">
+      <p class="partners-label">Zaufali nam</p>
+      <div class="marquee">
+        <div class="marquee-track" id="track"></div>
+      </div>
+    </section>
+  </div>
   <section class="about" id="o-firmie">
     <div class="wrap">
       <div class="section-head">
