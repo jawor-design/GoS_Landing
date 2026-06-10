@@ -52,12 +52,18 @@ section{padding-block:clamp(4rem,9vw,7.5rem);}
 .nav-links a:hover{color:var(--fg);}
 .nav-right{display:flex;align-items:center;gap:1.25rem;}
 .nav-cta{padding:.6rem 1.15rem;font-size:.875rem;}
-.hamburger{display:none;width:44px;height:44px;background:transparent;border:1px solid var(--border);border-radius:var(--r-btn);place-items:center;color:var(--fg);}
+.hamburger{display:none;width:44px;height:44px;background:transparent;border:1px solid var(--border);border-radius:var(--r-btn);flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;}
+.ham-line{display:block;width:20px;height:2px;background:var(--fg);border-radius:2px;transition:transform 300ms cubic-bezier(0.4,0,0.2,1),opacity 300ms ease;}
+.hamburger.open .ham-line:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open .ham-line:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open .ham-line:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 .mobile-menu{position:fixed;inset:72px 0 auto 0;z-index:99;background:var(--bg-nav);border-bottom:1px solid var(--border);transform:translateY(-120%);transition:transform 280ms cubic-bezier(.4,0,.2,1);padding:1.5rem var(--pad) 2rem;}
 .mobile-menu.open{transform:translateY(0);}
 .mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:.25rem;}
 .mobile-menu a{display:block;padding:.85rem 0;font-size:1.05rem;color:var(--fg-2);border-bottom:1px solid var(--border);}
-.mobile-menu .btn{margin-top:1.25rem;width:100%;}
+.mobile-menu .btn{margin-top:1.25rem;width:100%;display:flex;justify-content:center;padding:.85rem 1.5rem;color:var(--bg-base);border-bottom:none;}
+.menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:98;opacity:0;pointer-events:none;transition:opacity 300ms ease;}
+.menu-overlay.open{opacity:1;pointer-events:auto;}
 .hero{position:relative;background:var(--bg-deep);padding-block:clamp(3rem,6vw,5rem);overflow:hidden;display:flex;flex-direction:column;justify-content:center;}
 .hero-grid{position:absolute;inset:0;z-index:0;pointer-events:none;}
 .hero-grid svg{width:100%;height:100%;}
@@ -166,7 +172,7 @@ section{padding-block:clamp(4rem,9vw,7.5rem);}
 .footer-bottom .legal a:hover{color:var(--fg);}
 @media(max-width:768px){
   .nav-links,.nav-cta{display:none;}
-  .hamburger{display:grid;}
+  .hamburger{display:flex;}
   .about-grid{grid-template-columns:1fr;}
   .about-photo-wrap{min-height:280px;}
   .values{grid-template-columns:1fr;}
@@ -196,7 +202,9 @@ section{padding-block:clamp(4rem,9vw,7.5rem);}
     <div class="nav-right">
       <a href="#kontakt" class="btn btn-primary nav-cta">Skontaktuj się</a>
       <button class="hamburger" id="hamburger" aria-label="Otwórz menu" aria-expanded="false">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
       </button>
     </div>
   </div>
@@ -210,6 +218,7 @@ section{padding-block:clamp(4rem,9vw,7.5rem);}
   </ul>
   <a href="#kontakt" class="btn btn-primary">Skontaktuj się</a>
 </nav>
+<div class="menu-overlay" id="menuOverlay"></div>
 <main id="top">
   <div class="dark-screen">
     <section class="hero">
@@ -408,14 +417,15 @@ section{padding-block:clamp(4rem,9vw,7.5rem);}
 (function(){
   var nav=document.getElementById('nav');
   window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>20);},{passive:true});
-  var burger=document.getElementById('hamburger'),menu=document.getElementById('mobileMenu');
-  burger.addEventListener('click',function(){var o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Zamknij menu':'Otwórz menu');});
+  var burger=document.getElementById('hamburger'),menu=document.getElementById('mobileMenu'),overlay=document.getElementById('menuOverlay');
+  burger.addEventListener('click',function(){var o=menu.classList.toggle('open');burger.classList.toggle('open',o);overlay.classList.toggle('open',o);burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'Zamknij menu':'Otwórz menu');});
+  overlay.addEventListener('click',function(){menu.classList.remove('open');burger.classList.remove('open');overlay.classList.remove('open');burger.setAttribute('aria-expanded','false');burger.setAttribute('aria-label','Otwórz menu');});
   document.querySelectorAll('a[href^="#"]').forEach(function(a){
     a.addEventListener('click',function(e){
       var id=(a.getAttribute('href')||'').slice(1);
       if(!id)return;
       e.preventDefault();
-      menu.classList.remove('open');burger.setAttribute('aria-expanded','false');
+      menu.classList.remove('open');burger.classList.remove('open');overlay.classList.remove('open');burger.setAttribute('aria-expanded','false');burger.setAttribute('aria-label','Otwórz menu');
       var el=id==='top'?null:document.getElementById(id);
       window.scrollTo({top:el?el.getBoundingClientRect().top+window.pageYOffset-72:0,behavior:'smooth'});
     });
