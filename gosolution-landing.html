@@ -52,6 +52,14 @@ section{padding-block:clamp(4rem,9vw,7.5rem);}
 .nav-links a:hover{color:var(--fg);}
 .nav-right{display:flex;align-items:center;gap:1.25rem;}
 .nav-cta{padding:.6rem 1.15rem;font-size:.875rem;}
+.lang-switch{position:relative;}
+.lang-btn{display:inline-flex;align-items:center;gap:.35rem;background:transparent;border:1px solid var(--border);border-radius:var(--r-btn);padding:.5rem .75rem;color:var(--fg-2);font-size:.85rem;font-family:var(--font-body);transition:color var(--t),border-color var(--t);}
+.lang-btn:hover{color:var(--fg);border-color:var(--fg-2);}
+.lang-menu{position:absolute;top:calc(100% + .5rem);right:0;min-width:80px;background:var(--bg-nav);border:1px solid var(--border);border-radius:var(--r-btn);list-style:none;padding:.35rem;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity var(--t),transform var(--t),visibility var(--t);z-index:101;}
+.lang-menu.open{opacity:1;visibility:visible;transform:translateY(0);}
+.lang-menu a{display:block;padding:.5rem .75rem;font-size:.85rem;color:var(--fg-2);border-radius:2px;transition:background var(--t),color var(--t);}
+.lang-menu a:hover{background:var(--bg-card);color:var(--fg);}
+.lang-menu a.active{color:var(--fg);background:var(--bg-card);}
 .hamburger{display:none;width:44px;height:44px;background:transparent;border:1px solid var(--border);border-radius:var(--r-btn);flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;}
 .ham-line{display:block;width:20px;height:2px;background:var(--fg);border-radius:2px;transition:transform 300ms cubic-bezier(0.4,0,0.2,1),opacity 300ms ease;}
 .hamburger.open .ham-line:nth-child(1){transform:translateY(7px) rotate(45deg);}
@@ -62,6 +70,10 @@ section{padding-block:clamp(4rem,9vw,7.5rem);}
 .mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:.25rem;}
 .mobile-menu a{display:block;padding:.85rem 0;font-size:1.05rem;color:var(--fg-2);border-bottom:1px solid var(--border);}
 .mobile-menu .btn{margin-top:1.25rem;width:100%;display:flex;justify-content:center;padding:.85rem 1.5rem;color:var(--bg-base);border-bottom:none;}
+.mobile-lang-footer{display:flex;gap:.5rem;align-items:center;margin:1.25rem calc(-1 * var(--pad)) -2rem;padding:1.25rem var(--pad);border-top:1px solid var(--border);background:var(--bg-base);}
+.mobile-lang-footer .mobile-lang-btn{padding:.4rem .75rem;border:1px solid var(--border);border-radius:var(--r-btn);font-size:.85rem;color:var(--fg-2);transition:all var(--t);}
+.mobile-lang-footer .mobile-lang-btn.active{background:var(--accent);color:var(--bg-base);border-color:var(--accent);}
+.mobile-lang-footer .mobile-lang-btn:hover{color:var(--fg);}
 .menu-overlay{position:fixed;inset:0;background:rgba(13,13,13,.4);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);z-index:98;opacity:0;pointer-events:none;transition:opacity 300ms ease;}
 .menu-overlay.open{opacity:1;pointer-events:auto;}
 .hero{position:relative;background:var(--bg-deep);padding-block:clamp(3rem,6vw,5rem);overflow:hidden;display:flex;flex-direction:column;justify-content:center;}
@@ -172,6 +184,7 @@ section{padding-block:clamp(4rem,9vw,7.5rem);}
 .footer-bottom .legal a:hover{color:var(--fg);}
 @media(max-width:768px){
   .nav-links,.nav-cta{display:none;}
+  .lang-switch{display:none;}
   .hamburger{display:flex;}
   .about-grid{grid-template-columns:1fr;}
   .about-photo-wrap{min-height:280px;}
@@ -200,6 +213,18 @@ section{padding-block:clamp(4rem,9vw,7.5rem);}
       </ul>
     </nav>
     <div class="nav-right">
+      <div class="lang-switch">
+        <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">
+          <span class="lang-current">PL</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <ul class="lang-menu" id="langMenu">
+          <li><a href="#" data-lang="pl" class="active">PL</a></li>
+          <li><a href="#" data-lang="en">EN</a></li>
+          <li><a href="#" data-lang="es">ES</a></li>
+          <li><a href="#" data-lang="ua">UA</a></li>
+        </ul>
+      </div>
       <a href="#kontakt" class="btn btn-primary nav-cta">Skontaktuj się</a>
       <button class="hamburger" id="hamburger" aria-label="Otwórz menu" aria-expanded="false">
         <span class="ham-line"></span>
@@ -217,6 +242,12 @@ section{padding-block:clamp(4rem,9vw,7.5rem);}
     <li><a href="#kontakt">Kontakt</a></li>
   </ul>
   <a href="#kontakt" class="btn btn-primary">Skontaktuj się</a>
+  <div class="mobile-lang-footer">
+    <a href="#" data-lang="pl" class="mobile-lang-btn active">PL</a>
+    <a href="#" data-lang="en" class="mobile-lang-btn">EN</a>
+    <a href="#" data-lang="es" class="mobile-lang-btn">ES</a>
+    <a href="#" data-lang="ua" class="mobile-lang-btn">UA</a>
+  </div>
 </nav>
 <div class="menu-overlay" id="menuOverlay"></div>
 <main id="top">
@@ -430,6 +461,17 @@ section{padding-block:clamp(4rem,9vw,7.5rem);}
       window.scrollTo({top:el?el.getBoundingClientRect().top+window.pageYOffset-72:0,behavior:'smooth'});
     });
   });
+  var langBtn=document.getElementById('langBtn'),langMenu=document.getElementById('langMenu');
+  var langLinks=document.querySelectorAll('[data-lang]');
+  function setLang(lang){
+    langLinks.forEach(function(x){x.classList.toggle('active',x.dataset.lang===lang);});
+    if(langBtn){var cur=langBtn.querySelector('.lang-current');if(cur)cur.textContent=lang.toUpperCase();}
+  }
+  if(langBtn&&langMenu){
+    langBtn.addEventListener('click',function(e){e.stopPropagation();var o=langMenu.classList.toggle('open');langBtn.setAttribute('aria-expanded',o);});
+    document.addEventListener('click',function(){langMenu.classList.remove('open');langBtn.setAttribute('aria-expanded','false');});
+  }
+  langLinks.forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();setLang(a.dataset.lang);if(langMenu){langMenu.classList.remove('open');if(langBtn)langBtn.setAttribute('aria-expanded','false');}});});
   var partners=['Produkcja Nord','CleanPro','BudMax','Logistyka 24','MetalWorks','FreshFood','EuroBud','TechMontaż'];
   var track=document.getElementById('track');
   if(track){var h='';[0,1].forEach(function(p){partners.forEach(function(n){h+='<div class="plogo" aria-hidden="'+(p?'true':'false')+'">'+n+'</div>';});});track.innerHTML=h;}
