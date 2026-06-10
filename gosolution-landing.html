@@ -58,12 +58,12 @@ section{padding-block:clamp(4rem,9vw,7.5rem);}
 .mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:.25rem;}
 .mobile-menu a{display:block;padding:.85rem 0;font-size:1.05rem;color:var(--fg-2);border-bottom:1px solid var(--border);}
 .mobile-menu .btn{margin-top:1.25rem;width:100%;}
-.hero{position:relative;background:var(--bg-deep);padding-top:clamp(8rem,16vw,11rem);padding-bottom:clamp(5rem,11vw,8rem);overflow:hidden;}
+.hero{position:relative;background:var(--bg-deep);padding-block:clamp(3rem,6vw,5rem);overflow:hidden;display:flex;flex-direction:column;justify-content:center;}
 .hero-grid{position:absolute;inset:0;z-index:0;pointer-events:none;}
 .hero-grid svg{width:100%;height:100%;}
 .hero-grid .gline{stroke:var(--accent);stroke-width:1;opacity:.05;}
 .hero-glow{position:absolute;z-index:0;pointer-events:none;width:min(720px,90vw);aspect-ratio:1;left:50%;top:18%;transform:translateX(-50%);background:radial-gradient(circle,rgba(232,232,232,.06),transparent 62%);}
-.hero-inner{position:relative;z-index:1;max-width:var(--maxw);}
+.hero-inner{position:relative;z-index:1;max-width:var(--maxw);width:100%;}
 .hero h1{font-size:clamp(2.5rem,6.2vw,5rem);font-weight:700;line-height:1.02;letter-spacing:-0.03em;}
 .hero h1 .dim{color:var(--fg-2);}
 .hero .sub{margin-top:1.5rem;max-width:560px;font-size:1.125rem;color:var(--fg-2);line-height:1.55;}
@@ -133,16 +133,23 @@ section{padding-block:clamp(4rem,9vw,7.5rem);}
 .info-row .ico{width:20px;height:20px;color:var(--accent);flex:0 0 auto;margin-top:.15rem;}
 .info-row .lbl{font-size:.75rem;color:var(--fg-2);text-transform:uppercase;letter-spacing:.1em;}
 .info-row .val{font-size:.95rem;color:var(--fg);}
-.worker{background:#DFDEDE;border-top:1px solid #C8C8C8;border-bottom:none;}
-.worker .eyebrow{color:#777777;}
-.worker-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:2rem;}
-.worker-text{max-width:600px;}
+.worker{background:#DFDEDE;border-top:1px solid #C8C8C8;padding-block:clamp(3rem,6vw,5rem);}
+.worker-inner{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:start;}
+.worker-text{display:flex;flex-direction:column;gap:1.5rem;}
+.worker-header{display:flex;flex-direction:column;gap:0.35rem;}
 .worker-text h2{font-size:clamp(1.8rem,3.6vw,2.5rem);color:#111111;}
-.worker-text p{color:#555555;margin-top:1rem;font-size:1.0625rem;}
-.worker-text .mail{display:inline-block;margin-top:.9rem;color:#1A1A1A;font-size:.95rem;border-bottom:1px solid #888888;padding-bottom:2px;}
-.worker .btn-outline{color:#1A1A1A;border-color:#1A1A1A;}
-.worker .btn-outline:hover{background:#1A1A1A;color:#F5F5F5;}
-.worker-actions{flex:0 0 auto;}
+.worker-text p{color:#555555;font-size:1.0625rem;}
+.worker-text .eyebrow{color:#777777;font-size:.75rem;}
+.worker-chips{display:flex;flex-wrap:wrap;gap:.6rem;}
+.chip{display:inline-flex;align-items:center;padding:.45rem 1rem;border-radius:100px;border:none;background:#2A2A2A;font-size:.85rem;color:#F0F0F0;font-family:var(--font-body);}
+.worker-card{background:#1A1A1A;border-radius:12px;padding:2.5rem;display:flex;flex-direction:column;gap:1.25rem;}
+.worker-card-header{display:flex;align-items:center;gap:1rem;}
+.worker-card-icon{width:52px;height:52px;background:#2A2A2A;border-radius:8px;display:flex;align-items:center;justify-content:center;}
+.worker-card-icon img{filter:brightness(0) invert(1);}
+.worker-card h3{font-family:var(--font-head);font-size:1.5rem;font-weight:600;color:#F0F0F0;margin:0;}
+.worker-card p{color:#9A9A9A;font-size:.95rem;margin:0;}
+.worker-btn{width:100%;justify-content:center;margin-top:.5rem;}
+.worker-mail{text-align:center;font-size:.85rem;color:#9A9A9A;border-bottom:1px solid #333333;padding-bottom:2px;align-self:center;}
 .footer{background:var(--bg-deep);padding-block:clamp(3rem,6vw,4.5rem);}
 .footer-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2.5rem;}
 .footer-brand{max-width:320px;}
@@ -166,7 +173,7 @@ section{padding-block:clamp(4rem,9vw,7.5rem);}
   .cards{grid-template-columns:1fr;}
   .contact-grid{grid-template-columns:1fr;}
   .form-grid{grid-template-columns:1fr;}
-  .worker-inner{flex-direction:column;align-items:flex-start;}
+  .worker-inner{grid-template-columns:1fr;}
 }
 @media(max-width:375px){:root{--pad:1.1rem;}}
 @media(prefers-reduced-motion:reduce){.marquee-track{animation:none;}html{scroll-behavior:auto;}}
@@ -182,9 +189,8 @@ section{padding-block:clamp(4rem,9vw,7.5rem);}
       <ul class="nav-links">
         <li><a href="#o-firmie">O firmie</a></li>
         <li><a href="#uslugi">Usługi</a></li>
-        <li><a href="#partnerzy">Partnerzy</a></li>
-        <li><a href="#kontakt">Kontakt</a></li>
         <li><a href="#dla-pracownika">Dla pracownika</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
       </ul>
     </nav>
     <div class="nav-right">
@@ -199,9 +205,8 @@ section{padding-block:clamp(4rem,9vw,7.5rem);}
   <ul>
     <li><a href="#o-firmie">O firmie</a></li>
     <li><a href="#uslugi">Usługi</a></li>
-    <li><a href="#partnerzy">Partnerzy</a></li>
-    <li><a href="#kontakt">Kontakt</a></li>
     <li><a href="#dla-pracownika">Dla pracownika</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
   </ul>
   <a href="#kontakt" class="btn btn-primary">Skontaktuj się</a>
 </nav>
@@ -263,7 +268,7 @@ section{padding-block:clamp(4rem,9vw,7.5rem);}
         <div class="value">
           <div class="value-header">
             <div class="value-icon-wrap"><img src="icons/icon-transparentnosc.svg" alt="" class="value-icon"></div>
-            <h3>Transparentnosc</h3>
+            <h3>Transparentność</h3>
           </div>
           <p>Jasne stawki, czytelne umowy i pełna informacja o statusie rekrutacji. Bez drobnego druku i niespodzianek na fakturze.</p>
         </div>
@@ -287,25 +292,25 @@ section{padding-block:clamp(4rem,9vw,7.5rem);}
       <div class="cards">
         <article class="card">
           <span class="idx">01</span>
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <img class="ico" src="icons/icon-rekrutacja-czasowa.svg" alt="" width="34" height="34">
           <h3>Rekrutacja tymczasowa</h3>
           <p>Elastyczne zatrudnienie na czas określony — sezonowe, projektowe i pod nagłe wzrosty produkcji. Kompletujemy obsadę szybko, bez obciążania Twojego działu kadr.</p>
         </article>
         <article class="card">
           <span class="idx">02</span>
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-5h6v5"/></svg>
+          <img class="ico" src="icons/icon-outsourcing.svg" alt="" width="34" height="34">
           <h3>Outsourcing pracowniczy (APT)</h3>
           <p>Przejmujemy cały proces zatrudnienia — od rekrutacji po obsługę kadrowo-płacową. Zdejmujemy z Ciebie obciążenia administracyjne i ryzyko związane z zarządzaniem personelem.</p>
         </article>
         <article class="card">
           <span class="idx">03</span>
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.3 2.7-6 6-6 1.4 0 2.7.5 3.7 1.2"/><path d="M15 14l2 2 4-4"/></svg>
+          <img class="ico" src="icons/icon-rekrutacja-stala.svg" alt="" width="34" height="34">
           <h3>Rekrutacja stała</h3>
           <p>Dobór pracowników na stałe stanowiska z weryfikacją kompetencji i referencji. Przedstawiamy wyselekcjonowanych kandydatów i dajemy gwarancję na skuteczność rekrutacji.</p>
         </article>
         <article class="card">
           <span class="idx">04</span>
-          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>
+          <img class="ico" src="icons/icon-legalizacja.svg" alt="" width="34" height="34">
           <h3>Legalizacja zatrudnienia cudzoziemców</h3>
           <p>Kompleksowa obsługa dokumentów i pozwoleń na pracę. Mamy doświadczenie z pracownikami z Ukrainy i innych krajów Europy — prowadzimy proces zgodnie z przepisami od A do Z.</p>
         </article>
@@ -315,13 +320,28 @@ section{padding-block:clamp(4rem,9vw,7.5rem);}
   <section class="worker" id="dla-pracownika">
     <div class="wrap worker-inner">
       <div class="worker-text">
-        <p class="eyebrow">Dla pracownika</p>
-        <h2>Szukasz pracy?</h2>
-        <p>Współpracujemy z pracodawcami, którzy oferują godne warunki zatrudnienia. Wyślij nam swoje CV — dopasujemy Cię do odpowiedniej oferty.</p>
-        <a href="mailto:praca@gosolution.pl" class="mail">praca@gosolution.pl</a>
+        <div class="worker-header">
+          <p class="eyebrow">Dla pracownika</p>
+          <h2>Szukasz pracy?</h2>
+        </div>
+        <div class="worker-chips">
+          <span class="chip">Legalne zatrudnienie</span>
+          <span class="chip">Terminowe wynagrodzenia</span>
+          <span class="chip">Wsparcie formalne</span>
+          <span class="chip">Różne branże</span>
+        </div>
+        <p>Współpracujemy z pracodawcami, którzy oferują godne warunki zatrudnienia. Dopasujemy Cię do odpowiedniej oferty — szybko i bez zbędnych formalności.</p>
       </div>
-      <div class="worker-actions">
-        <a href="mailto:praca@gosolution.pl?subject=Aplikacja%20-%20CV" class="btn btn-outline">Wyślij CV</a>
+      <div class="worker-card">
+        <div class="worker-card-header">
+          <div class="worker-card-icon">
+            <img src="icons/icon-dokument.svg" alt="" width="28" height="28">
+          </div>
+          <h3>Wyślij swoje CV</h3>
+        </div>
+        <p>Bezpłatna pomoc w znalezieniu pracy. Odpowiadamy w ciągu 24h.</p>
+        <a href="mailto:praca@gosolution.pl?subject=Aplikacja%20-%20CV" class="btn btn-primary worker-btn">Wyślij CV</a>
+        <a href="mailto:praca@gosolution.pl" class="worker-mail">praca@gosolution.pl</a>
       </div>
     </div>
   </section>
@@ -372,9 +392,8 @@ section{padding-block:clamp(4rem,9vw,7.5rem);}
           <ul>
             <li><a href="#o-firmie">O firmie</a></li>
             <li><a href="#uslugi">Usługi</a></li>
-            <li><a href="#partnerzy">Partnerzy</a></li>
-            <li><a href="#kontakt">Kontakt</a></li>
             <li><a href="#dla-pracownika">Dla pracownika</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
           </ul>
         </div>
       </div>
