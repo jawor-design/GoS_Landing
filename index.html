@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GoSolution — Już wkrótce</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Geist';src:url('https://cdn.jsdelivr.net/npm/geist@1.3.0/dist/fonts/geist-sans/Geist-Variable.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{background:#0D0D0D;color:#F0F0F0;font-family:'Geist',-apple-system,system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;-webkit-font-smoothing:antialiased;overflow:hidden;}
+.grid{position:fixed;inset:0;z-index:0;pointer-events:none;}
+.grid svg{width:100%;height:100%;}
+.gline{stroke:#E8E8E8;stroke-width:1;opacity:.05;}
+.glow{position:fixed;z-index:0;pointer-events:none;width:min(720px,90vw);aspect-ratio:1;left:50%;top:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(232,232,232,.06),transparent 62%);}
+.content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:2.5rem;padding:2rem;text-align:center;}
+.logo-wrap img{height:100px;width:auto;display:block;}
+.divider{width:1px;height:40px;background:linear-gradient(to bottom,transparent,#333333,transparent);}
+.message{display:flex;flex-direction:column;gap:.5rem;}
+.message p{font-size:1.2rem;color:#9A9A9A;letter-spacing:.05em;text-transform:uppercase;}
+.contact{display:flex;flex-direction:column;gap:.6rem;align-items:center;}
+.contact a{font-family:'Outfit',system-ui,sans-serif;font-size:.95rem;color:#9A9A9A;text-decoration:none;transition:color 200ms ease;}
+.contact a:hover{color:#E8E8E8;}
+.sweep{opacity:.18;}
+@media(max-width:768px){.logo-wrap img{height:56px;}}
+</style>
+</head>
+<body>
+<div class="grid" aria-hidden="true">
+  <svg preserveAspectRatio="xMidYMid slice" viewBox="0 0 1200 700">
+    <defs><pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path class="gline" d="M60 0H0V60" fill="none"/></pattern></defs>
+    <rect width="1200" height="700" fill="url(#grid)"/>
+    <line class="gline sweep" id="sweep" x1="0" y1="0" x2="0" y2="700"/>
+  </svg>
+</div>
+<div class="glow" aria-hidden="true"></div>
+<div class="content">
+  <div class="logo-wrap">
+    <img src="Gos_logo_SilverIA.svg" alt="GoSolution">
+  </div>
+  <div class="divider"></div>
+  <div class="message">
+    <p>Strona w przygotowaniu</p>
+  </div>
+  <div class="contact" style="display:none;">
+    <a href="tel:+48600000000">+48 600 000 000</a>
+    <a href="mailto:kontakt@gosolution.pl">kontakt@gosolution.pl</a>
+  </div>
+</div>
+<script>
+var sweep=document.getElementById('sweep');
+if(sweep){var x=0;setInterval(function(){x=(x+2)%1260;sweep.setAttribute('x1',x);sweep.setAttribute('x2',x);},40);}
+</script>
+</body>
+</html>
